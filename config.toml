@@ -9,18 +9,18 @@ theme = "coder"
     info = "Full Stack Software Engineer"
     description = "The personal website and blog of Dewald de Jager."
     avatarurl = "/images/avatar.jpg"
-    custom_css = ["/css/style.css"]
+    custom_css = ["css/style.css"]
     math = true
 
 # Social links
 [[params.social]]
     name = "Github"
-    icon = "fab fa-github fa-2x"
+    icon = "fab fa-github"
     weight = 1
     url = "https://github.com/DewaldDeJager/"
 [[params.social]]
     name = "LinkedIn"
-    icon = "fab fa-linkedin fa-2x"
+    icon = "fab fa-linkedin"
     weight = 2
     url = "https://www.linkedin.com/in/dewaldjdejager/"
 [[params.social]]
@@ -41,4 +41,4 @@ theme = "coder"
 [[menu.main]]
     name = "Contact"
     weight = 5
-url = "/contact/"
+    url = "/contact/"

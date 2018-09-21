@@ -11,7 +11,7 @@ You can contact me via the form below:
         Name:<br>
         <input type="text" name="name" required>
     </label>
-<br>
+    <br>
     <label>
         Email Address:<br>
         <input type="email" name="email">
