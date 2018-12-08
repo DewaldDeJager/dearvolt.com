@@ -21,6 +21,11 @@ Associate Android Developer – Google
 Certified Java Associate - Oracle
 
 
+## Talks
+- Scala: Functional Programming meets Data Science
+- Building Enterprise Systems with the Play! 2 Framework
+- Particle Swarm Optimisation in Python
+
 ## Conferences
 - [DevFest 2018, Johannesburg, South Africa](https://devfest.co.za/)
 - [DevConf 2018, Johannesburg, South Africa](https://www.devconf.co.za/)
