@@ -20,6 +20,11 @@ Associate Android Developer – Google
 
 Certified Java Associate - Oracle
 
+
+## Conferences
+- [DevFest 2018, Johannesburg, South Africa](https://devfest.co.za/)
+- [DevConf 2018, Johannesburg, South Africa](https://www.devconf.co.za/)
+
 ## Publications
 
 _Three-Valued Bounded Model Checking with Cause-Guided Abstraction Refinement_, Nils Timm, Stefan Gruner, Dewald de Jager [Awaiting Publication]
