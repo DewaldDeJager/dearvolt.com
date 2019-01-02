@@ -1,7 +1,7 @@
 ---
 title: "(De)serializing Polymorphic Objects In Java"
 date: 2019-01-02T12:11:17+02:00
-draft: false
+draft: true
 type: "posts"
 ---
 
