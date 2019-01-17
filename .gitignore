@@ -67,3 +67,5 @@ fabric.properties
 
 public/
 resources/_gen
+
+hugo/
