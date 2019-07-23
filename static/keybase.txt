@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/dearvolt
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://dearvolt.com
+  * I am dearvolt (https://keybase.io/dearvolt) on keybase.
+  * I have a public key ASDp1EFm1wHuF8FrUEj76LsOfIZllHn60rG5xpHZ6l3Q3wo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120e9d44166d701ee17c16b5048fbe8bb0e7c86659479fad2b1b9c691d9ea5dd0df0a",
+      "host": "keybase.io",
+      "kid": "0120e9d44166d701ee17c16b5048fbe8bb0e7c86659479fad2b1b9c691d9ea5dd0df0a",
+      "uid": "7709224e6e2af10e6dc4d2c42319bd19",
+      "username": "dearvolt"
+    },
+    "merkle_root": {
+      "ctime": 1563873743,
+      "hash": "76eba17c48797843a7984c42ea8c793e5dde0144c741ee1de57f440d416e1eca6f41e64f26ef29d1567f854577d4256d27943d2b12117dadbc7b97c20557cf49",
+      "hash_meta": "5627de6704194a55503971712844a5cb01c5f3fa7af30037780c57ed288ba3e4",
+      "seqno": 5830803
+    },
+    "service": {
+      "entropy": "CzcByiA91qGijs/2dakJ+Q/Z",
+      "hostname": "dearvolt.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "4.2.0"
+  },
+  "ctime": 1563873758,
+  "expire_in": 504576000,
+  "prev": "654733776b7c06bddd2c528302eb6524fe1154dd5a770e075749db44be0cc6d2",
+  "seqno": 9,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEg6dRBZtcB7hfBa1BI++i7DnyGZZR5+tKxucaR2epd0N8Kp3BheWxvYWTESpcCCcQgZUczd2t8Br3dLFKDAutlJP4RVN1adw4HV0nbRL4MxtLEIH8LoJ0Ny4PDatXLBJ/ZAsFxvAUYeMnhrcvGCCngey6vAgHCo3NpZ8RARsuHcc2el+Oz/tQ9d6Q7xVtNjQfEZ6paCEAKDjY2S+kOim4iNn0WRe9qFOcRkosjzVaCCZPvkvA3Loc0dZOZDqhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIPVFWZL2SibcowgZrjSRRPRLxFjhCiodh0EwNyQ+GJw9o3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/dearvolt
+
+==================================================================
