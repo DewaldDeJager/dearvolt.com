@@ -10,7 +10,7 @@ Inktober is finally here!
 Today while looking for inspiration on basic ink drawings, I came across something called [Zentangles](https://zentangle.com/).
 I thought they were be perfect because I tend to work better with patterns with my analytical mind.
 Ironically, a lot of guides to getting started with drawing suggest doing basic doodles to get familiar with your pen and start the process of building up muscle memory in your hand.
-They also seem quite similar to Mandalas, which I'd like to try later on in the month.
+They also seem quite similar to mandalas, which I'd like to try later on in the month.
 
 I ended up drawing the six Zentangles below.
 
