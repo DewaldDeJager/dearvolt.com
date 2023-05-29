@@ -1,5 +1,6 @@
 body {
     background-color: #EEE;
+    font-family: Merriweather, Georgia, serif;
 }
 
 input, textarea, select {
@@ -25,4 +26,23 @@ button:focus {
     outline: none;
     background: #666;
     color: #FFF;
+}
+
+/* Certifications */
+.certification-list {
+    list-style: none;
+    padding: 0;
+}
+
+.certification-entry {
+    display: inline-block;
+    /*padding: 20px;*/
+}
+
+.certification-entry a {
+    float: left;
+}
+
+.certification-icon {
+    max-height: 200px;
 }
