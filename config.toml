@@ -1,5 +1,6 @@
 baseURL = "/"
-languageCode = "en-us"
+languageCode = "en"
+defaultContentLanguage = "en"
 title = "Dewald de Jager"
 
 theme = "coder"
@@ -8,24 +9,25 @@ theme = "coder"
     author = "Dewald de Jager"
     info = "Full Stack Software Engineer"
     description = "The personal website and blog of Dewald de Jager."
-    avatarurl = "/images/avatar.jpg"
-    custom_css = ["css/style.css"]
-    math = true
+    avatarurl = "images/avatar.jpg"
+    customCSS = ["css/style.css"]
+    colorScheme = "light"
+    hideColorSchemeToggle = true
 
 # Social links
 [[params.social]]
     name = "Github"
-    icon = "fab fa-github"
+    icon = "fa fa-2x fa-github"
     weight = 1
     url = "https://github.com/DewaldDeJager/"
 [[params.social]]
     name = "LinkedIn"
-    icon = "fab fa-linkedin"
+    icon = "fa fa-2x fa-linkedin"
     weight = 2
     url = "https://www.linkedin.com/in/dewaldjdejager/"
 [[params.social]]
     name = "Twitter"
-    icon = "fab fa-twitter"
+    icon = "fa fa-2x fa-twitter"
     weight = 3
     url = "https://twitter.com/DewaldDeJager/"
 
