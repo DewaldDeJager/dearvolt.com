@@ -6,6 +6,7 @@ draft: false
 
 You can contact me via the form below:
 
+{{< raw_html >}}
 <form name="contact" netlify>
     <label>
         Name:<br>
@@ -24,3 +25,4 @@ You can contact me via the form below:
     <br>
     <button type="submit">Send</button>
 </form>
+{{< /raw_html >}}
