@@ -149,7 +149,7 @@ The investment is the time and effort put into the migration as well as the inhe
 This risk of each strategy is also variable depending on the skills available in the teams performing the migration.
 The return on investment is typically in the form of reduced operational expenditure and a lower total cost of ownership but can also be indirect such as increased change velocity of teams and decrease in emergency response times.
 
-{{< figure src="migration-strategies.jpg" >}}
+{{< figure src="migration-strategies.png" >}}
 
 It's important to consider the business case, the migration objectives, the current state and the future state when deciding on migration strategies[^3].
 Migration doesn't have to be, and generally shouldn't be, a "big bang" type of release.
