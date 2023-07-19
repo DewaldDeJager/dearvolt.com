@@ -21,8 +21,6 @@ The second will be a walkthrough of the migration of a sample application. This 
 The sample application that we will be migrating is called [Bank of Sirius](https://github.com/nginxinc/bank-of-sirius) (hence the title) which is a "productionized" fork of the popular [Bank of Anthos](https://github.com/GoogleCloudPlatform/bank-of-anthos) project.
 I chose this application as it is open source, relatively small and a good representation of what you might be tasked with migrating in practice.
 
-{{< table-of-contents >}}
-
 ## Migration Preparation
 
 >  By failing to prepare, you are preparing to fail<br>
