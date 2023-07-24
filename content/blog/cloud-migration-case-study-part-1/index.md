@@ -5,7 +5,7 @@ draft: false
 description:
 slug:
 authors: []
-tags: ["cloud computing", migration, AWS]
+tags: ["cloud computing", migration, aws]
 categories: []
 externalLink:
 series: ["A Cloud Migration Case Study"]
@@ -27,21 +27,15 @@ I chose this application as it is open source, relatively small and a good repre
 > — <cite>Benjamin Franklin</cite>
 
 Preparation is instrumental to the success of your migration effort.
+
+{{< figure src="stages-of-migration.png" caption="A visual representation of the approximate _effort_ expended in each stage of the migration" >}}
+
 It's common for organizations to set up a "task force" for migration initiatives as the application owning team might not have experience with AWS or cloud migrations, or have insight into how things are done in other applications or business units in the organization.
 A typical team composition might include a facilitator (project manager/scrum master/team lead), engineers from the application owning team (and from the team that operates it if not the same team), a solutions architect familiar with the application, a cloud solutions architect and some migration experts (for example a database migration expert from AWS or an AWS Partner).
 
 Start by introducing the team members to each other, agreeing on roles and responsibilities, and defining the high-level scope of the migration.
 The team needs to work together like a well-oiled machine to migrate as efficiently as possible.
 It's unlikely that the team will be doing everything right from the get-go so promote a team culture that instills the value of close collaboration, effective communication and constant feedback.
-
-### The Stages of Migration
-
-1. Define Objectives
-2. Discover
-3. Plan
-4. Validate
-5. Execute
-6. Finalize
 
 ### Define Your Objectives
 
@@ -125,7 +119,7 @@ The below architecture diagram depicts the current state of the AWS account we w
 By looking at the configuration of all the components, we can identify the work that needs to be done to get to the desired state.
 The architecture diagram shows only two availability zones.
 Since each region has at least three availability zones, this indicates that the VPC depicted is not the default VPC created by AWS and that we need to review how everything has been configured.
-We also need to make sure that the team has the access needed to perform the migration[^5].
+We also need to make sure that the team has the access needed to perform the migration[^team-access].
 Some services, such as AWS CloudTrail and AWS Config, may already be set up with some default organization-wide configuration.
 AWS Config may be configured to automatically remediate non-compliant resources, so it is a good idea to go through the rules configured in the account.
 
@@ -142,7 +136,7 @@ AWS Config may be configured to automatically remediate non-compliant resources,
 ### Decide on Migration Strategy
 
 With our objectives defined and a clear understanding of the application's current state, it's time to start planning the future state.
-The 7 Rs[^1] [^2] are widely used in industry and provide a shared vocabulary that can be used to discuss different approaches to migrating an application.
+The 7 Rs[^migration-strategies] [^remediation] are widely used in industry and provide a shared vocabulary that can be used to discuss different approaches to migrating an application.
 
 Each of the migration strategies will require varying amounts of investment and will have different rates of return.
 The investment is the time and effort put into the migration as well as the inherent risk of each strategy.
@@ -151,17 +145,17 @@ The return on investment is typically in the form of reduced operational expendi
 
 {{< figure src="migration-strategies.png" >}}
 
-It's important to consider the business case, the migration objectives, the current state and the future state when deciding on migration strategies[^3].
+It's important to consider the business case, the migration objectives, the current state and the future state when deciding on migration strategies[^migration-strategy-flowchart].
 Migration doesn't have to be, and generally shouldn't be, a "big bang" type of release.
 Doing a migration iteratively results in less risk, allows for agility and lets the business capitalize on the benefits of the migration sooner.
 The majority of migrations will use the rehost or replatform strategies.
-It's common to first rehost or replatform an application to shorten the migration bubble and then to rearchitect it once in the cloud.
+It's common to first rehost or replatform an application to shorten the migration bubble and then to re-architect it once in the cloud.
 
 {{< notice tip >}} Migrate then modernize. {{< /notice >}}
 
 We want to assess every component in the Bank of Anthos bill of materials and choose the most appropriate migration strategy.
 The Bank of Anthos services are containerized and running in a Kubernetes cluster.
-AWS offers a number of container services [^4] but due to the number of containers needed to support a production environment and the amount of control needed, we will focus on the container orchestration offerings.
+AWS offers a number of container services[^container-services] but due to the number of containers needed to support a production environment and the amount of control needed, we will focus on the container orchestration offerings.
 
 The easiest migration strategy would be to _relocate_.
 By relocating the resources to Amazon EKS, the migration requires minimal effort and lowers the risk of the migration.
@@ -171,29 +165,53 @@ Additionally, the idle on-premises hardware can be leveraged using Amazon EKS An
 While Kubernetes is incredibly powerful and extensible, it can be complex and requires special skills to successfully operate a production cluster.
 Amazon ECS provides a good balance between control and ease of use, and integrates well with other AWS services.
 ECS can use Fargate as a capacity provider and there is also an ECS Anywhere offering.
-Migrating the services from Kubernetes to ECS would be a _replatform_, meaning there is more effort and risk than relocating, but there is also significantly more value.
+Migrating the web server and APIs from Kubernetes to ECS would be a _replatform_, meaning there is more effort and risk than relocating, but there is also significantly more value.
 
-{{< notice warning >}} The remainder of this blog post is a work in progress. {{< /notice >}}
+Operating and administering the two PostgreSQL databases is costly as the team is required to maintain the entire database management system (DBMS)
+and perform additional operational duties such as patching the underlying operating system.
+By _replatforming_ the databases onto a fully managed relational database service, such as Amazon Aurora, these operational duties are delegated to AWS.
+It also becomes easier for the team to maintain high levels of reliability and scalability of the databases by leveraging features such as multi-AZ deployments and auto-scaling.
+Amazon Aurora is PostgreSQL compatible so the database replatforming is homogeneous,
+in contrast with heterogeneous migrations where the database is migrated to a different engine (Typically done when re-architecting an application).
+This strategy results in minimal changes to the application, even with remediation measures such as upgrading database engine versions.
 
-Relocate - Could go to EKS on Fargate - That would be the fastest and would still technically be serverless
-Rehost is going from OpenShift for example
-Replatform from GKS to ECS
-Re-architect - Go to Lambdas
-Refactor could be using DynamoDB instead of Postgresql or introducing something like SQS/MSK for processing transactions
-Service discovery built in to Kubernetes now needs to be handled by CloudMap
-Ingress route replaced with a load balancer and target group associated with the service
-DNS moves to Route53
-Move from GCR to ECR
+The migration strategy for the DBMS has a big impact on the migration strategy for the data itself.
+Data migration strategies are typically classified as being either online or offline.
+Offline strategies such as _backup and restore_ are simple as you don't need to worry about any changes to the data during the migration but require some application downtime.
+Database replication mechanisms and tools allow for more flexibility but are much more complex, especially with heterogeneous migrations.
+Services like AWS Database Migration Service (DMS)[^dms] can perform once-off or continuous replication of data and even convert the schema of the data in the process.
 
-Data migration strategies? Backup and restore, backup and restore with some availability, continuous replication
+Some auxiliary services provided by Kubernetes or on-prem infrastructure could be _repurchased_, for example:
+- Amazon Route 53 for DNS
+- Amazon ECS Service Connect for service discovery
+- Amazon Elastic Container Registry (ECR) as a container registry
+- AWS Certificate Manager (ACM) for TLS certificate management
+- Amazon Elastic Load Balancing (ELB) for load balancing
+- AWS Key Management Service (KMS) for cryptographic key management
+- AWS Secrets Manager and AWS Systems Manager Parameter Store for secret and configuration management
+
+{{< notice example Checklist >}}
+- XXX
+{{< /notice >}}
 
 ### Plan and Validate
 
+{{< notice warning >}} The remainder of this blog post is a work in progress. {{< /notice >}}
+
 This is where the majority of the time will be spent.
+
+{{< figure src="logical-architecture-v1.png" caption="The first iteration of the Anthos on AWS logical architecture" >}}
 
 Testing tools can do what you need them to do
 Database migration, especially heterogeneous
-ECS mounting a secret as a file isn't possible - Had to change the code
+ECS mounting a secret as a file isn't possible - Had to change the code to pull data from environment variable
+
+Example is CI/CD tool not being able to connect to new environment to deploy
+
+Iteratively plan and validate
+Automate as much as possible
+Change freeze - Avoid code changes or releases
+Define a backout strategy
 
 SLI/SLO/SLAs and downtime
 MTTR (Or reliability target, error budget), RPO and RTO
@@ -201,15 +219,16 @@ Architecture
 Changes to CI/CD
 Change management processes? Or ITSM in general?
 DR exercises?
-Test strategy? eg. ingress traffic
+Test strategy? eg. test ingress traffic by working outward
 
 Do all team members have the access needed?
 
 
 #### Footnotes
 
-[^1]: See the AWS prescriptive guidance article on large [migration strategies](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html)
-[^2]: The 8th R, remediation, is not widely accepted to be a migration strategy but rather an optional migration task. This task entails tackling technical debt such as updating operating system versions. See the [InfoSys whitepaper](https://www.infosys.com/about/knowledge-institute/insights/documents/cloud-migration.pdf) or [the Azure Cloud Adoption Framework documentation](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/migrate/migration-considerations/migrate/remediate) for more details.
-[^3]: A useful flowchart that can be used to choose a migration strategy can be found in the AWS prescriptive guidance article on [application portfolio assessment](https://docs.aws.amazon.com/prescriptive-guidance/latest/application-portfolio-assessment-guide/prioritization-and-migration-strategy.html#migration-r-type)
-[^4]: See this article on [choosing an AWS container service](https://aws.amazon.com/getting-started/decision-guides/containers-on-aws-how-to-choose/)
-[^5]: This includes making sure all team members have access to assume the appropriate roles and ensuring that the roles have sufficient permissions to perform migration tasks. The [IAM Policy Simulator](https://policysim.aws.amazon.com) is a helpful tool for testing policies.
+[^migration-strategies]: See the AWS prescriptive guidance article on large [migration strategies](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html)
+[^remediation]: The 8th R, remediation, is not widely accepted to be a migration strategy but rather an optional migration task. This task entails tackling technical debt such as updating operating system versions. See the [InfoSys whitepaper](https://www.infosys.com/about/knowledge-institute/insights/documents/cloud-migration.pdf) or [the Azure Cloud Adoption Framework documentation](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/migrate/migration-considerations/migrate/remediate) for more details.
+[^migration-strategy-flowchart]: A useful flowchart that can be used to choose a migration strategy can be found in the AWS prescriptive guidance article on [application portfolio assessment](https://docs.aws.amazon.com/prescriptive-guidance/latest/application-portfolio-assessment-guide/prioritization-and-migration-strategy.html#migration-r-type)
+[^container-services]: See this article on [choosing an AWS container service](https://aws.amazon.com/getting-started/decision-guides/containers-on-aws-how-to-choose/)
+[^team-access]: This includes making sure all team members have access to assume the appropriate roles and ensuring that the roles have sufficient permissions to perform migration tasks. The [IAM Policy Simulator](https://policysim.aws.amazon.com) is a helpful tool for testing policies.
+[^dms]: AWS provides a suite of tools to help with database migrations. [AWS DMS Fleet Advisor](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_FleetAdvisor.html) allows for database discovery and migration planning. The [AWS Schema Conversion Tool](https://docs.aws.amazon.com/SchemaConversionTool/latest/userguide/CHAP_Welcome.html) (SCT) is helpful in assessing the plausibility and complexity of a heterogeneous database migration.
