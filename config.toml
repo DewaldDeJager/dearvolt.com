@@ -44,3 +44,7 @@ theme = "coder"
     name = "Contact"
     weight = 5
     url = "/contact/"
+
+[taxonomies]
+    series = "series"
+    tag = "tags"
