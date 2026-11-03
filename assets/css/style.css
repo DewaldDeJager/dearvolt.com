@@ -3,34 +3,69 @@ body {
     font-family: Merriweather, Georgia, serif;
 }
 
-input, textarea, select {
-    width: 450px;
-    margin: 0;
-    padding: 0;
-    -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
-    -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
+/* Contact form */
+.contact-form {
+    max-width: 34em;
+    margin-top: 1.5em;
+}
+
+.contact-form-field {
+    margin-bottom: 1em;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 0.3em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.85em;
+    font-weight: 700;
+}
+
+.contact-form input,
+.contact-form textarea {
     box-sizing: border-box;
-}
-
-form input, textarea, button {
+    width: 100%;
+    padding: 0.5em 0.7em;
+    border: 1px solid #BBB;
+    border-radius: 6px;
     background-color: #FFF;
-    color: #000;
+    color: #212121;
+    font: inherit;
+    transition: border-color 0.15s, box-shadow 0.15s;
 }
 
-button {
-    padding: 5px;
-    width: 450px;
-    font: bold .6em sans-serif;
-    border: 2px solid #666;
-    border-radius: 5px;
-    background: none;
+.contact-form textarea {
+    min-height: 6em;
+    resize: vertical;
 }
 
-button:hover,
-button:focus {
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #1565C0;
+    box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.2);
     outline: none;
-    background: #666;
+}
+
+.contact-form button {
+    padding: 0.6em 1.5em;
+    border: none;
+    border-radius: 6px;
+    background-color: #1565C0;
     color: #FFF;
+    cursor: pointer;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 1em;
+    font-weight: 700;
+    transition: background-color 0.15s;
+}
+
+.contact-form button:hover {
+    background-color: #0D47A1;
+}
+
+.contact-form button:focus-visible {
+    outline: 3px solid rgba(21, 101, 192, 0.4);
+    outline-offset: 2px;
 }
 
 /* Certifications */

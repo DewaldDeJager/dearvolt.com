@@ -7,22 +7,20 @@ draft: false
 You can contact me via the form below:
 
 {{< raw_html >}}
-<form name="contact" netlify>
-    <label>
-        Name:<br>
-        <input type="text" name="name" required>
-    </label>
-    <br>
-    <label>
-        Email Address:<br>
-        <input type="email" name="email">
-    </label>
-    <br>
-    <label>
-        Message:<br>
-        <textarea name="message" required></textarea>
-    </label>
-    <br>
-    <button type="submit">Send</button>
+<form class="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-recaptcha="true">
+    <div class="contact-form-field">
+        <label for="contact-name">Name</label>
+        <input type="text" id="contact-name" name="name" autocomplete="name" required>
+    </div>
+    <div class="contact-form-field">
+        <label for="contact-email">Email address</label>
+        <input type="email" id="contact-email" name="email" autocomplete="email">
+    </div>
+    <div class="contact-form-field">
+        <label for="contact-message">Message</label>
+        <textarea id="contact-message" name="message" rows="6" required></textarea>
+    </div>
+    <div class="contact-form-field" data-netlify-recaptcha="true"></div>
+    <button type="submit">Send message</button>
 </form>
 {{< /raw_html >}}
