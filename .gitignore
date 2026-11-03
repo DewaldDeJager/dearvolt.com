@@ -71,3 +71,9 @@ resources/_gen
 hugo/
 hugo
 /hugo.exe # Yuck
+
+# Local Netlify folder
+.netlify
+
+# Hugo build lock
+.hugo_build.lock
